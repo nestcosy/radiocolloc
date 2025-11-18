@@ -1,11 +1,11 @@
 from sqlalchemy import (
-    MetaData, Table, Column, Integer, String, Text, ForeignKey, Boolean
+    MetaData, Table, Column, Integer, String, ForeignKey
 )
 from sqlalchemy import create_engine
-from sqlalchemy.sql import func
 import os
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:////data/runtime/db.sqlite")
+# Absolute DB path in container
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:////srv/apps/radiocolloc/runtime/db.sqlite")
 
 metadata = MetaData()
 
@@ -21,7 +21,7 @@ tracks = Table(
     Column("yt_id", String, unique=True, nullable=False),
     Column("title", String, nullable=False),
     Column("filepath", String, nullable=False),
-    Column("tags", String, default=""),  # CSV of tags
+    Column("tags", String, default=""),
 )
 
 user_tracks = Table(
@@ -32,6 +32,10 @@ user_tracks = Table(
 )
 
 def init_db():
+    # ensure runtime dir exists
+    runtime_dir = os.path.dirname(DATABASE_URL.replace("sqlite:", ""))
+    if runtime_dir and not os.path.exists(runtime_dir):
+        os.makedirs(runtime_dir, exist_ok=True)
     engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
     metadata.create_all(engine)
     return engine
