@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.sql import func
 import os
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./runtime/db.sqlite")
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:////data/runtime/db.sqlite")
 
 metadata = MetaData()
 
