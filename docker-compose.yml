@@ -5,6 +5,6 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./data/media:/data/media
-      - ./data/runtime:/data/runtime
+      - ./data/media:/srv/apps/radiocolloc/media
+      - ./data/runtime:/srv/apps/radiocolloc/runtime
     restart: unless-stopped
