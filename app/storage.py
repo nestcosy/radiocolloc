@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-MEDIA_ROOT = os.environ.get("MEDIA_ROOT", "/data/media")
+MEDIA_ROOT = os.environ.get("MEDIA_ROOT", "/srv/apps/radiocolloc/media")
 
 Path(MEDIA_ROOT).mkdir(parents=True, exist_ok=True)
 
