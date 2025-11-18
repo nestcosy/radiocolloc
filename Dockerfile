@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# dépendances système pour yt-dlp et ffmpeg
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     ca-certificates \
@@ -15,13 +14,11 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY app /app
 
 ENV PYTHONUNBUFFERED=1
-ENV VENV_PATH=/app
 
-# dossier pour stocker les musiques
-VOLUME /data/media
+# create and set ownership/permissions for runtime volumes
+RUN mkdir -p /srv/media /srv/runtime && chown -R root:root /srv /srv/media /srv/runtime && chmod -R 775 /srv/media /srv/runtime
 
-# dossier runtime (db etc.)
-VOLUME /data/runtime
+VOLUME ["/srv/media", "/srv/runtime"]
 
 EXPOSE 8000
 
