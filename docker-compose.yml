@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  radio:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/media:/data/media
+      - ./data/runtime:/data/runtime
+    restart: unless-stopped
