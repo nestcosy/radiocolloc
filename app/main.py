@@ -137,7 +137,8 @@ def tracks_by_tag(tag: str):
 
 @app.get("/media/{filename}")
 def media_file(filename: str):
-    path = os.path.join("/data/media", filename)
+    path = os.path.join("/srv/apps/radiocolloc/media", filename)
     if not os.path.exists(path):
         raise HTTPException(status_code=404)
     return FileResponse(path, media_type="audio/mpeg")
+
