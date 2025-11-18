@@ -15,10 +15,11 @@ COPY app /app
 
 ENV PYTHONUNBUFFERED=1
 
-# create and set ownership/permissions for runtime volumes
-RUN mkdir -p /srv/media /srv/runtime && chown -R root:root /srv /srv/media /srv/runtime && chmod -R 775 /srv/media /srv/runtime
+# create and set permissions for runtime volumes
+RUN mkdir -p /srv/apps/radiocolloc/media /srv/apps/radiocolloc/runtime \
+    && chmod -R 775 /srv/apps/radiocolloc
 
-VOLUME ["/srv/media", "/srv/runtime"]
+VOLUME ["/srv/apps/radiocolloc/media", "/srv/apps/radiocolloc/runtime"]
 
 EXPOSE 8000
 
