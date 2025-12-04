@@ -1,5 +1,6 @@
 # Use the official Python runtime image
-FROM python:latest #Currently 3.14
+FROM python:latest
+#Currently 3.14
  
 # Create the app directory
 RUN mkdir /app
