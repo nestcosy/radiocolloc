@@ -4,9 +4,11 @@ services:
       context: .
       dockerfile: Dockerfile
     networks:
-      internal:
-        ipv4_address: 172.16.0.200
+      dev:
+        ipv4_address: 172.22.0.22
+    ports:
+      - "8000:8000"
       
 networks:
-  internal:
+  dev:
     external: true
