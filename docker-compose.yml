@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      internal:
+        ipv4_address: 172.16.0.200
+      
+networks:
+  internal:
+    external: true
