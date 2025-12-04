@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     networks:
       dev:
-        ipv4_address: 172.22.0.22
+        ipv4_address: 172.22.0.23
     ports:
       - "8000:8000"
       
